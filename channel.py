@@ -27,7 +27,7 @@ def get_channels(path, BPM):
         channel = Channel()
         channel.num_bars = cfg.get("num_bars", 1)
         channel.double = cfg.get("double", False)
-        channel.beat = cfg.get("num_bars", 1)
+        channel.beat = cfg.get("beat", False)
         channels[cfg["name"]] = channel
         
         amp = cfg.get("amp", 1)
