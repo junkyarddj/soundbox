@@ -17,6 +17,7 @@ async def conductor(mixer, channels):
             print(f"Playing")
             channel = channels[channelName]
             if not channel.enabled:
+                bar_counters[channelName] = 0
                 continue
             mixer.play(channel.sample)
         
@@ -27,10 +28,12 @@ async def conductor(mixer, channels):
             for channelName in (c for c in channels if not channels[c].beat):
                 channel = channels[channelName]
                 if not channel.enabled:
+                    bar_counters[channelName] = 0
                     continue
                 
                 counter = bar_counters.get(channelName, 0)
                 if counter == 0:
+                    print("Play:", channelName)
                     mixer.play(channel.sample)
                     counter = channel.num_bars
                     

@@ -53,6 +53,9 @@ class Mixer:
         time,
         status,
     ):
+        if status:
+            print(status)
+            
         mix = np.zeros(
             (frames, 2),
             dtype=np.float32,
