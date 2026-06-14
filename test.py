@@ -5,7 +5,7 @@ from conductor import conductor
 from channel import get_channels
 
 BPM = 125
-channels = get_channels("configs/channels_slaphouse.py", BPM)
+channels = get_channels("slaphouse", BPM)
 
 async def testing_loop(channels):
 
@@ -37,7 +37,7 @@ async def main():
     #channels["3"].enabled = True
 
     await asyncio.gather(
-        conductor(mixer, channels),
+        conductor(mixer, channels, BPM),
         testing_loop(channels)
     )
 

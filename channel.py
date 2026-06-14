@@ -15,7 +15,9 @@ class Channel:
     beat: bool = False
     double: bool = False
 
-def get_channels(path, BPM):
+def get_channels(genreName, bpm):
+
+    path = "samples/" + genreName + "/config.py"
 
     spec = importlib.util.spec_from_file_location("channel_config",path)
     module = importlib.util.module_from_spec(spec)
@@ -33,10 +35,10 @@ def get_channels(path, BPM):
         amp = cfg.get("amp", 1)
         
         sample, samplerate = _load_sample(cfg["path"])
-        channel.sample = stretch_to_bars(
+        channel.sample = _stretch_to_bars(
             sample * amp,
             samplerate,
-            BPM,
+            bpm,
             channel.num_bars
         )
 
@@ -52,12 +54,12 @@ def _load_sample(path):
 
     return audio, sr
 
-def stretch_to_bars(audio,samplerate,bpm,bars):
+def _stretch_to_bars(audio,samplerate,bpm,bars):
     target_seconds = (bars * 4 * 60 / bpm)
 
-    return stretch_to_duration(audio,samplerate,target_seconds)
+    return _stretch_to_duration(audio,samplerate,target_seconds)
 
-def stretch_to_duration(audio,samplerate,target_seconds):
+def _stretch_to_duration(audio,samplerate,target_seconds):
 
     current_seconds = (len(audio)/samplerate)
     factor = (target_seconds / current_seconds)

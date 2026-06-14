@@ -13,8 +13,7 @@ import lights
 # ========================
 # OSC SENDER (Buttons)
 # ========================
-OSC_SEND_IP = "127.0.0.1"
-OSC_SEND_PORT = 4560
+
 OSC_SEND_CHANNEL_PATH = "/channel"
 OSC_SEND_TEST_PATH = "/test"
 OSC_SEND_KILL_PATH = "/kill"

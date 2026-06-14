@@ -1,14 +1,13 @@
 import asyncio
 import time
 
-BPM = 125
 BEATS_PER_BAR = 4
 
 bar_counters = {}
 
-async def conductor(mixer, channels):
+async def conductor(mixer, channels, bpm):
     
-    beat_duration = 60 / BPM
+    beat_duration = 60 / bpm
     next_beat = time.monotonic()
     beat = 0
     
